@@ -5,7 +5,6 @@ class kiosk:
     __sel = 0
     __menu_list = {} #메뉴, 개수
     __menu_sum_list = {} #메뉴, 총합
-    sum = 0;
 
     def menu_print(self):
         print('-'*25)
@@ -58,7 +57,6 @@ kiosk_1.menu_dict('에스프레소', 4000)
 kiosk_1.menu_dict('마끼아또', 4000)
 kiosk_1.menu_dict('밀크파르페', 6500)
 kiosk_1.menu_dict('아이스라떼', 4400)
-order_num = 1
 
 return_sel = 'y' \
 
