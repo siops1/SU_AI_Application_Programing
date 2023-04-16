@@ -16,7 +16,7 @@ class kiosk:
         print('-'*25)
         print("\t SU SUMMER CAFE")
         print('-' * 25)
-        inx = 1;
+        inx = 1
         for menu, cost in self.__dict.items():
             print(f"%d. %s\t\t{cost:,}원"%(inx, menu))
             inx += 1
@@ -41,13 +41,13 @@ class kiosk:
             return plus_sel.lower()
 
     def menu_list_up(self): #최종 주문 내역 출력
-        sum = 0
+        list_sum = 0
         print('-'*25)
         for menu, count in self.__menu_list.items():
             print(f"%s\t%d\t{self.__dict[menu] * count:,}"%(menu, count))
-            sum = sum + self.__dict[menu] * count
+            list_sum = list_sum + self.__dict[menu] * count
         print('-' * 25)
-        print(f"총합\t\t        {sum:,}")
+        print(f"총합\t\t        {list_sum:,}")
 
 kiosk_1 = kiosk()
 #추후 파일 입출력 방식으로 변환
