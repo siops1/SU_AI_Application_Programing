@@ -18,7 +18,7 @@ class kiosk:
         print('-' * 25)
         inx = 1;
         for menu, cost in self.__dict.items():
-            print("%d. %s\t\t%s원"%(inx, menu, cost))
+            print(f"%d. %s\t\t{cost:,}원"%(inx, menu))
             inx += 1
         print('-' * 25)
 
@@ -26,9 +26,9 @@ class kiosk:
         while True:
             menu = list(self.__dict.keys())[self.__sel-1]
             cost = list(self.__dict.values())[self.__sel-1]
-            print("%s은(는) %s원입니다"%(menu, cost))
+            print(f"%s은(는) {cost:,}원입니다"%menu)
             count = int(input("몇 개를 드릴까요? : "))
-            print("%s은(는) %d원입니다."%(menu, cost * count))
+            print(f"%s은(는) {cost * count:,}원입니다."%menu)
 
             if menu in self.__menu_list:
                 temp = self.__menu_list[menu]
@@ -44,10 +44,10 @@ class kiosk:
         sum = 0
         print('-'*25)
         for menu, count in self.__menu_list.items():
-            print("%s\t%d\t%d"%(menu, count, self.__dict[menu] * count))
+            print(f"%s\t%d\t{self.__dict[menu] * count:,}"%(menu, count))
             sum = sum + self.__dict[menu] * count
         print('-' * 25)
-        print("\t\t\t    %d"%sum)
+        print(f"총합\t\t        {sum:,}")
 
 kiosk_1 = kiosk()
 #추후 파일 입출력 방식으로 변환
