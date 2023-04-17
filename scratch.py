@@ -12,6 +12,11 @@ class kiosk:
     def menu_sel(self): #주문할 메뉴 입력
         self.__sel = int(input('메뉴를 선택해주세요(1~%d) : ' % len(self.__dict)))
 
+    def kiosk_reset(self):
+        self.__sel = 0
+        self.__menu_list = {}
+        self.__menu_sum_list = {}
+
     def menu_print(self): #메뉴 출력
         print('-'*25)
         print("\t SU SUMMER CAFE")
@@ -65,4 +70,6 @@ while True:
         else:
             kiosk_1.menu_list_up()
             break
-    time.sleep(5)
+    kiosk_1.kiosk_reset()
+    time.sleep(3)
+    print("\n\n\n")
