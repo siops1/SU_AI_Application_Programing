@@ -1,14 +1,36 @@
 import time
 
-class kiosk:
+class KIOSK:
     __dict = {} #메뉴, 인덱스 저장
     __sel = 0
     __menu_list = {} #메뉴, 개수
     __menu_sum_list = {} #메뉴, 총합
+    def file_read(self):
+        with open("coffee.txt", 'r') as coffee_file:
+            menu = coffee_file.read()
+            lst = menu.split('\n')
+        coffee_menu = {}
+        for i in range(0, len(lst) - 1):
+            a = lst[i].split(", ")
+            self.__dict[a[0]] = int(a[1])
+        coffee_file.close()
 
-    def menu_dict(self, menu, cost): #딕셔너리에 메뉴 추가
-        self.__dict[menu] = cost
+        with open("bread.txt", 'r') as bread_file:
+            menu = bread_file.read()
+            lst = menu.split('\n')
+        bread_menu = {}
+        for i in range(0, len(lst) - 1):
+            a = lst[i].split(", ")
+            self.__dict[a[0]] = int(a[1])
+        bread_file.close()
 
+        with open("icecream.txt", 'r') as icecream_file:
+            menu = icecream_file.read()
+            a = menu.split('\n')
+        for i in range(0, len(lst) - 1):
+            self.__dict[a[i]] = 3000
+
+        icecream_file.close()
     def menu_sel(self): #주문할 메뉴 입력
         self.__sel = int(input('메뉴를 선택해주세요(1~%d) : ' % len(self.__dict)))
 
@@ -23,7 +45,7 @@ class kiosk:
         print('-' * 25)
         inx = 1
         for menu, cost in self.__dict.items():
-            print(f"%d. %s\t\t{cost:,}원"%(inx, menu))
+            print(f"{inx}. {menu} {cost:,}원")
             inx += 1
         print('-' * 25)
 
@@ -54,22 +76,20 @@ class kiosk:
         print('-' * 25)
         print(f"총합\t\t        {list_sum:,}")
 
-kiosk_1 = kiosk()
-#추후 파일 입출력 방식으로 변환
-kiosk_1.menu_dict('에스프레소', 4000)
-kiosk_1.menu_dict('마끼아또', 4000)
-kiosk_1.menu_dict('밀크파르페', 6500)
-kiosk_1.menu_dict('아이스라떼', 4400)
+#Main
+kiosk = KIOSK()
+kiosk.file_read()
+
 while True:
     return_sel = 'y'
-    kiosk_1.menu_print()
+    kiosk.menu_print()
     while True:
         if  return_sel == 'y':
-            kiosk_1.menu_sel()
-            return_sel = kiosk_1.menu_order()
+            kiosk.menu_sel()
+            return_sel = kiosk.menu_order()
         else:
-            kiosk_1.menu_list_up()
+            kiosk.menu_list_up()
             break
-    kiosk_1.kiosk_reset()
+    kiosk.kiosk_reset()
     time.sleep(3)
     print("\n\n\n")
